@@ -32,8 +32,21 @@ function generateQR() {
   }
 
   const data = { owner, contact, item, message };
-  const encoded = btoa(JSON.stringify(data));
-  
+
+  // Try to compress the payload to keep URL short and URL-safe (works well on GitHub Pages)
+  let encoded;
+  try {
+    if (typeof LZString !== 'undefined' && LZString.compressToEncodedURIComponent) {
+      encoded = LZString.compressToEncodedURIComponent(JSON.stringify(data));
+    } else {
+      // Fallback to base64 if LZString not present
+      encoded = btoa(JSON.stringify(data));
+    }
+  } catch (e) {
+    console.error('Encoding error:', e);
+    encoded = btoa(JSON.stringify(data));
+  }
+
   // Get the correct base URL
   const baseUrl = getBaseUrl();
   const link = `${baseUrl}view.html?data=${encoded}`;
