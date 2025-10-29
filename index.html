@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Tag Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <i class="fas fa-qrcode"></i>
+      <h2>QR Tag Generator</h2>
+      <p class="subtitle">Create QR codes for your valuable items</p>
+    </div>
+
+    <div class="form-container">
+      <div class="input-group">
+        <label for="owner"><i class="fas fa-user"></i> Owner Details</label>
+        <input id="owner" placeholder="Enter your full name" />
+      </div>
+
+      <div class="input-group">
+        <label for="contact"><i class="fas fa-phone"></i> Contact Information</label>
+        <input id="contact" placeholder="Your contact number" />
+      </div>
+
+      <div class="input-group">
+        <label for="item"><i class="fas fa-tag"></i> Item Information</label>
+        <input id="item" placeholder="Name of your item" />
+      </div>
+
+      <div class="input-group">
+        <label for="message"><i class="fas fa-comment"></i> Custom Message</label>
+        <textarea id="message" placeholder="Add a message for finder (e.g. If found, please contact me.)"></textarea>
+      </div>
+
+      <button id="generateBtn">
+        <i class="fas fa-magic"></i> Generate QR Code
+      </button>
+    </div>
+
+    <div class="result-container">
+      <div id="qrcode"></div>
+      <a id="downloadLink" style="display:none;" download="qr.png">
+        <i class="fas fa-download"></i> Download QR Code
+      </a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Info</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card {
+      max-width: 400px;
+      background: white;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 { color: #0078ff; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Product Information</h2>
+    <p id="item"></p>
+    <p id="owner"></p>
+    <p id="contact"></p>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const data = params.get('data');
+
+    if (data) {
+      try {
+        const decoded = JSON.parse(atob(data));
+        document.getElementById('item').textContent = `Item: ${decoded.item}`;
+        document.getElementById('owner').textContent = `Owner: ${decoded.owner}`;
+        document.getElementById('contact').textContent = `Contact: ${decoded.contact}`;
+        document.getElementById('message').textContent = decoded.message || '';
+      } catch (e) {
+        document.body.innerHTML = "<h2>Invalid QR Data</h2>";
+      }
+    } else {
+      document.body.innerHTML = "<h2>No data found!</h2>";
+    }
+  </script>
+</body>
+</html>
